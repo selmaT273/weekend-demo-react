@@ -1,16 +1,32 @@
 import './App.css';
 import React from 'react';
-import Form from 'react-bootstrap/Form';
 
 export default class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      searchedCity: '',
+    }
+  }
+  
+  handleLocationSearch = event => {
+    event.preventDefault();
+
+    let input= event.target.elements.citySearch.value;
+    
+    console.log(input);
+  }
+
   render() {
     return (
       <div>
         <h1>Weekend Demo App</h1>
-        <Form>
-          <Form.Label>Search for a City</Form.Label>
-          <Form.Control type="city" placeholder="Enter city" />
-        </Form>
+        <form onSubmit={this.handleLocationSearch}>
+          <label>Search for a City
+            <input type="text" name="citySearch" placeholder="Enter city" />
+          </label>
+          <button type="submit">Search</button>
+        </form>
       </div>
     );
   }
